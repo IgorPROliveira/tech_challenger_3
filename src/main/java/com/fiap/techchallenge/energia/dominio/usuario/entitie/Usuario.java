@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -23,8 +24,13 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String cpf;
+    private String nome;
+    private String telefone;
+    private String email;
     private String senha;
+    private LocalDate datanascimento;
+    private String sexo;
     @OneToMany(mappedBy = "usuario")
     private List<Pessoa> pessoa;
     @OneToMany(mappedBy = "usuario")

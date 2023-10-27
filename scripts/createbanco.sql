@@ -6,7 +6,7 @@ CREATE table IF NOT exists  usuario(
    	email 	             VARCHAR(30)  NOT NULL,
    	senha 	             VARCHAR(255) NOT NULL,
    	dataNascimento       DATE       NOT NULL,
-   	sexo 		         VARCHAR(9)  NOT NULL,
+   	sexo 		         VARCHAR(9)  NOT NULL
 );
 
 CREATE TABLE IF NOT exists  endereco
@@ -18,7 +18,8 @@ CREATE TABLE IF NOT exists  endereco
    	bairro 	     VARCHAR(255)  NOT NULL,
    	cep 	     VARCHAR(30)   NOT NULL,
    	complemento   VARCHAR(30),
-FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
+    idUsuario         BIGINT       NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
 );
 
 
@@ -28,27 +29,16 @@ CREATE TABLE IF NOT exists  veiculo
     modelo 			VARCHAR(255)  NOT NULL,
    	marca	 		VARCHAR(255)  NOT NULL,
    	placa	 		VARCHAR(255)  NOT NULL,
-FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
-);	
-
-
-CREATE TABLE IF NOT exists  forma_pagamento
-(
-    id 		 	        SERIAL       PRIMARY KEY,
-    tipo			    VARCHAR(255)  NOT NULL,
-FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
+    idUsuario         BIGINT       NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT exists  estacionamento
+CREATE TABLE IF NOT EXISTS forma_pagamento
 (
-    id 		 	    SERIAL       PRIMARY KEY,
-    modalidade		VARCHAR(255)  NOT NULL,
-	tempo			DOUBLE NOT NULL,
-   	dh_incio		DATE  NOT NULL,
-   	dh_fim			DATE       NOT NULL,
-   	valor			VARCHAR(255)  NOT NULL,
-FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
-FOREIGN KEY (idVeiculo) REFERENCES veiculo(id) ON DELETE CASCADE
-FOREIGN KEY (idPagamento) REFERENCES forma_pagamento(id) ON DELETE CASCADE
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(255) NOT NULL,
+    idUsuario BIGINT NOT NULL,
+    FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
 );
+

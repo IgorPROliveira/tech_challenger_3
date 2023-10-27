@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@Table(name="tb_usuario")
+@Table(name="usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,8 +39,13 @@ public class Usuario {
     public UsuarioDTO ToUsuarioDTO() {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
         usuarioDTO.setId(this.id);
-        usuarioDTO.setUsername(this.username);
+        usuarioDTO.setCpf(this.cpf);
+        usuarioDTO.setNome(this.nome);
+        usuarioDTO.setTelefone(this.telefone);
+        usuarioDTO.setEmail(this.email);
         usuarioDTO.setSenha(this.senha);
+        usuarioDTO.setDatanascimento(this.datanascimento);
+        usuarioDTO.setSexo(this.sexo);
 
         return usuarioDTO;
     }

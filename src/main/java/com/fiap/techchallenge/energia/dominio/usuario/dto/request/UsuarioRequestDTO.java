@@ -51,14 +51,6 @@ public class UsuarioRequestDTO {
     @NotBlank(message = "sexo deve ser preenchido")
     private String sexo;
 
-    @ApiModelProperty(value = "Informacao do parentesco do usuario com o usuario", example = "FILHOS", position = 1)
-    @NotBlank(message = "parentesco deve ser preenchido")
-    private String parentesco;
-
-    @ApiModelProperty(value = "Código  com o ID do usuario", example = "1", position = 1)
-    @NotNull(message = "id do usuario deve ser preenchido")
-    private Long idusuario;
-
     public Usuario toEntity() {
         Usuario usuario = new Usuario();
 
@@ -69,8 +61,6 @@ public class UsuarioRequestDTO {
         usuario.setSenha(this.senha);
         usuario.setDatanascimento(this.datanascimento);
         usuario.setSexo(this.sexo);
-        usuario.setParentesco(this.parentesco);
-        usuario.setIdusuario(this.idusuario);
 
         return usuario;
     }
@@ -84,8 +74,7 @@ public class UsuarioRequestDTO {
         entity.setSenha(this.senha);
         entity.setDatanascimento(this.datanascimento);
         entity.setSexo(this.sexo);
-        entity.setParentesco(this.parentesco);
-        entity.setIdusuario(this.idusuario);
+
     }
 
 }

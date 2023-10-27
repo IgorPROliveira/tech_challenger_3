@@ -1,6 +1,5 @@
 package com.fiap.techchallenge.energia.dominio.endereco.entitie;
 
-import com.fiap.techchallenge.energia.dominio.eletrodomestico.entitie.Eletrodomestico;
 import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoDTO;
 import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoEletrodomesticoDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.entitie.Usuario;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -35,9 +33,6 @@ public class Endereco {
     @ManyToOne
     @JoinColumn(name = "idusuario" ,insertable=false, updatable=false)
     private Usuario usuario;
-
-    @OneToMany(mappedBy = "idendereco")
-    private List<Eletrodomestico> eletrodomesticos;
 
     public EnderecoDTO ToEnderecoDTO() {
         EnderecoDTO enderecoDTO = new EnderecoDTO();

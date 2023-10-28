@@ -4,10 +4,6 @@ import com.fiap.techchallenge.energia.dominio.pagamento.dto.request.PagamentoReq
 import com.fiap.techchallenge.energia.dominio.pagamento.dto.response.PagamentoDTO;
 import com.fiap.techchallenge.energia.dominio.pagamento.entitie.Pagamento;
 import com.fiap.techchallenge.energia.dominio.pagamento.repository.IPagamentoRepository;
-
-import com.fiap.techchallenge.energia.dominio.pessoa.dto.request.PessoaRequestDTO;
-import com.fiap.techchallenge.energia.dominio.pessoa.dto.response.PessoaDTO;
-import com.fiap.techchallenge.energia.dominio.pessoa.entitie.Pessoa;
 import com.fiap.techchallenge.energia.exception.service.DatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;

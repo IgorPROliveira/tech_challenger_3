@@ -1,6 +1,5 @@
 package com.fiap.techchallenge.energia.dominio.veiculo.service;
 
-import com.fiap.techchallenge.energia.dominio.pessoa.dto.response.PessoaDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.request.VeiculoRequestDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.response.VeiculoDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.entitie.Veiculo;

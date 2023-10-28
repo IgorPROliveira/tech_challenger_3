@@ -1,7 +1,6 @@
 package com.fiap.techchallenge.energia.dominio.usuario.entitie;
 
 import com.fiap.techchallenge.energia.dominio.endereco.entitie.Endereco;
-import com.fiap.techchallenge.energia.dominio.pessoa.entitie.Pessoa;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioPessoaDTO;
 import lombok.AllArgsConstructor;
@@ -31,8 +30,7 @@ public class Usuario {
     private String senha;
     private LocalDate datanascimento;
     private String sexo;
-    @OneToMany(mappedBy = "usuario")
-    private List<Pessoa> pessoa;
+
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> endereco;
 

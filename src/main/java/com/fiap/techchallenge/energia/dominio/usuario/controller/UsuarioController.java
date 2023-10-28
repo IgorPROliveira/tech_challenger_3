@@ -1,6 +1,5 @@
 package com.fiap.techchallenge.energia.dominio.usuario.controller;
 
-import com.fiap.techchallenge.energia.dominio.pessoa.service.PessoaService;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.request.UsuarioRequestDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioPessoaDTO;

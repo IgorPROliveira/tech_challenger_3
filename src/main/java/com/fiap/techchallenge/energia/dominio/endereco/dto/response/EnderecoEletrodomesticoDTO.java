@@ -1,6 +1,5 @@
 package com.fiap.techchallenge.energia.dominio.endereco.dto.response;
 
-import com.fiap.techchallenge.energia.dominio.eletrodomestico.dto.response.EletrodomesticoDTO;
 import com.fiap.techchallenge.energia.dominio.endereco.entitie.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +23,6 @@ public class EnderecoEletrodomesticoDTO {
         private String cep;
         private String complemento;
         private Long idusuario;
-        private List<EletrodomesticoDTO> eletrodomesticos = new ArrayList<>();
 
         public EnderecoEletrodomesticoDTO(Endereco endereco) {
             this.id = endereco.getId();
@@ -36,7 +34,6 @@ public class EnderecoEletrodomesticoDTO {
             this.cep = endereco.getCep();
             this.complemento = endereco.getComplemento();
             this.idusuario = endereco.getIdusuario();
-            endereco.getEletrodomesticos().forEach(eletro -> this.eletrodomesticos.add(new EletrodomesticoDTO(eletro)));
         }
     }
 

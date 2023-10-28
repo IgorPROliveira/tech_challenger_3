@@ -1,5 +1,6 @@
 package com.fiap.techchallenge.energia.dominio.veiculo.entitie;
 
+import com.fiap.techchallenge.energia.dominio.usuario.entitie.Usuario;
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.response.VeiculoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,11 @@ public class Veiculo {
     private String placa;
     private String marca;
     private String modelo;
+    private Long idusuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idusuario" ,insertable=false, updatable=false)
+    private Usuario usuario;
 
     public VeiculoDTO ToVeiculoDTO(){
 
@@ -30,7 +36,7 @@ public class Veiculo {
         veiculoDTO.setPlaca(this.placa);
         veiculoDTO.setMarca(this.marca);
         veiculoDTO.setModelo(this.modelo);
-
+        veiculoDTO.setIdusuario(this.idusuario);
         return veiculoDTO;
     }
 }

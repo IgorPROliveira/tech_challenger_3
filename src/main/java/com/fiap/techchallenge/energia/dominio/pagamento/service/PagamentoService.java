@@ -4,8 +4,18 @@ import com.fiap.techchallenge.energia.dominio.pagamento.dto.request.PagamentoReq
 import com.fiap.techchallenge.energia.dominio.pagamento.dto.response.PagamentoDTO;
 import com.fiap.techchallenge.energia.dominio.pagamento.entitie.Pagamento;
 import com.fiap.techchallenge.energia.dominio.pagamento.repository.IPagamentoRepository;
+
+import com.fiap.techchallenge.energia.dominio.pessoa.dto.request.PessoaRequestDTO;
+import com.fiap.techchallenge.energia.dominio.pessoa.dto.response.PessoaDTO;
+import com.fiap.techchallenge.energia.dominio.pessoa.entitie.Pessoa;
+import com.fiap.techchallenge.energia.exception.service.DatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,23 +28,33 @@ public class PagamentoService {
     public PagamentoService(IPagamentoRepository pagamentoRepository) {
         this.pagamentoRepository = pagamentoRepository;
     }
-    public Pagamento realizarPagamento(PagamentoRequestDTO pagamentoRequest) {
-        // Implemente a lógica de processamento de pagamento aqui
-        // Isso pode incluir validações, cálculos, interações com sistemas de pagamento, etc.
-
-        // Crie uma instância de Pagamento a partir do PagamentoRequestDTO
-        Pagamento pagamento = pagamentoRequest.toEntity();
-
-        // Salve o pagamento no banco de dados
-        return pagamentoRepository.save(pagamento);
+    @Transactional
+    public PagamentoDTO save(PagamentoRequestDTO dto) {
+        var entity = dto.toEntity();
+        var pagamentoSaved = pagamentoRepository.save(entity);
+        return pagamentoSaved.ToPagamentoDTO();
     }
-    public List<PagamentoDTO> listarPagamentos() {
-        // Implemente a lógica para listar todos os pagamentos do banco de dados
-        List<Pagamento> pagamentos = pagamentoRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<PagamentoDTO> findAll(PageRequest pageRequest) {
+        var pagamentos = pagamentoRepository.findAll(pageRequest);
+        return  pagamentos.map(Pagamento::ToPagamentoDTO);
+    }
 
-        // Converta as entidades de pagamento em DTOs
-        return pagamentos.stream()
-                .map(PagamentoDTO::new)
-                .collect(Collectors.toList());
+    @Transactional
+    public void delete(Long id)  {
+        try {
+            pagamentoRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Violação de integridade dos dados");
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<PagamentoDTO> findById(Long id) {
+        var pagamento = pagamentoRepository.findById(id);
+        if(pagamento.isPresent()) {
+            return ResponseEntity.ok(pagamento.get().ToPagamentoDTO());
+        }
+        return ResponseEntity.notFound().build();
     }
 }

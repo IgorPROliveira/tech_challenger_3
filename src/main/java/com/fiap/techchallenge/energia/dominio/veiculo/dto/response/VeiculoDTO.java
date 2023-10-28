@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
@@ -25,10 +26,14 @@ public class VeiculoDTO {
     @ApiModelProperty(value = "Informacao do modelo do veiculo", example = "SUV", position = 1)
     @NotBlank(message = "Telefone deve ser preenchido")
     private String modelo;
+    @ApiModelProperty(value = "Código  com o ID do usuario", example = "2", position = 1)
+    @NotNull(message = "id do usuario deve ser preenchido")
+    private Long idusuario;
 
     public VeiculoDTO(Veiculo veiculo){
         this.placa = veiculo.getPlaca();
         this.marca = veiculo.getMarca();
         this.modelo = veiculo.getModelo();
+        this.idusuario = veiculo.getIdusuario();
     }
 }

@@ -21,7 +21,7 @@ import java.util.Optional;
 public class VeiculoService {
 
     @Autowired
-    private static IVeiculoRepository veiculoRepository;
+     IVeiculoRepository veiculoRepository;
 
     @Transactional
     public VeiculoDTO save(VeiculoRequestDTO dto) {

@@ -28,9 +28,9 @@ public class EnderecoController {
 
     @PostMapping
     public ResponseEntity<EnderecoDTO> save(@Valid @RequestBody EnderecoRequestDTO dto) {
-        var endereco = enderecoService.save(dto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand((endereco.getId())).toUri();
-        return ResponseEntity.created(uri).body(endereco);
+            var endereco = enderecoService.save(dto);
+            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand((endereco.getId())).toUri();
+            return ResponseEntity.created(uri).body(endereco);
     }
 
     @GetMapping

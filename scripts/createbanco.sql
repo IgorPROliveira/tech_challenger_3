@@ -16,6 +16,7 @@ CREATE TABLE IF NOT exists  endereco
    	estado	 	 CHAR(2)       NOT NULL,
    	municipio 	 VARCHAR(255)  NOT NULL,
    	bairro 	     VARCHAR(255)  NOT NULL,
+    rua 	     VARCHAR(255)  NOT NULL,
    	cep 	     VARCHAR(30)   NOT NULL,
    	complemento   VARCHAR(30),
     idUsuario         BIGINT       NOT NULL,

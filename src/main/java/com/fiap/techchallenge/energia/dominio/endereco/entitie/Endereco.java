@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="tb_endereco")
+@Table(name="endereco")
 public class Endereco {
 
     @Id

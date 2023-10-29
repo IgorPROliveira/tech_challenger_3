@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Setter
@@ -20,18 +21,21 @@ import javax.validation.constraints.NotBlank;
 public class PagamentoRequestDTO {
     @ApiModelProperty(value = "Tipo de pagamento (CARTAO_CREDITO, CARTAO_DEBITO, PIX)", example = "CARTAO_CREDITO", position = 1)
     @NotBlank(message = "Tipo de pagamento deve ser preenchido")
-    private Tipo tipoPagamento; // Pode ser uma string representando o tipo de pagamento
+    private Tipo tipo; // Pode ser uma string representando o tipo de pagamento
+    @ApiModelProperty(value = "Código  com o ID do usuario", example = "1", position = 1)
+    @NotNull(message = "id do usuario deve ser preenchido")
+    private Long idusuario;
 
     public Pagamento toEntity() {
         Pagamento pagamento = new Pagamento();
 
-        pagamento.setTipoPagamento(this.tipoPagamento);
-
+        pagamento.setTipo(this.tipo);
+        pagamento.setIdusuario(this.idusuario);
         return pagamento;
     }
 
     public void ToMapperEntity(Pagamento entity) {
-        entity.setTipoPagamento(this.tipoPagamento);
-
+        entity.setTipo(this.tipo);
+        entity.setIdusuario(this.idusuario);
     }
 }

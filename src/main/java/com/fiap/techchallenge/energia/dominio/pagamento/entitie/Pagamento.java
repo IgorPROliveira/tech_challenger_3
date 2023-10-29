@@ -15,27 +15,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="tb_forma_pagamento")
+@Table(name="forma_pagamento")
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Enumerated(EnumType.STRING) // Defina o tipo de enumeração (ou outro tipo apropriado)
-    private Tipo tipoPagamento;
+    private Tipo tipo;
+    private Long idusuario;
+
+    @ManyToOne
+    @JoinColumn(name = "idusuario" ,insertable=false, updatable=false)
+    private Usuario usuario;
 
     public PagamentoDTO ToPagamentoDTO(){
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
 
         pagamentoDTO.setId(this.id);
-        pagamentoDTO.setTipoPagamento(String.valueOf(this.tipoPagamento));
+        pagamentoDTO.setTipo(String.valueOf(this.tipo));
+        pagamentoDTO.setIdusuario(this.idusuario);
 
         return pagamentoDTO;
     }

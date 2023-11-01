@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class EstacionamentoDTO {
+public class EstacionamentoEncerradoDTO {
 
     @ApiModelProperty(value = "ID do endereco", example = "1", position = 1)
     private Long id;
@@ -30,7 +31,7 @@ public class EstacionamentoDTO {
     @NotBlank(message = "A modalidade deve ser preenchida")
     private String modalidade;
 
-    @ApiModelProperty(value = "Tempo em minutos", example = "60", position = 1)
+    @ApiModelProperty(value = "Tempo em horas", example = "1", position = 1)
     private Long tempo;
 
     @ApiModelProperty(value = "2023-10-30 10:00:00", example = "1", position = 1)
@@ -41,17 +42,12 @@ public class EstacionamentoDTO {
     private LocalDateTime datafim;
 
     @ApiModelProperty(value = "Valor ", example = "7.00", position = 1)
-    private Double valor;
+    private Double valorTotal;
 
-    @ApiModelProperty(value = "S/N ", example = "N", position = 1)
-    private Boolean pago;
+    @ApiModelProperty(value = "Status ", example = "Aguardando pagamento", position = 1)
+    private String status;
 
-    @ApiModelProperty(value = "Código  com o ID do usuario", example = "1", position = 1)
-    @NotNull(message = "id do usuario deve ser preenchido")
-    private Long idusuario;
-
-    @ApiModelProperty(value = "Código  com o ID do veiculo", example = "1", position = 1)
-    @NotNull(message = "id do veiculo deve ser preenchido")
-    private Long idveiculo;
+    @ApiModelProperty(value = "Aviso ", example = "Encerrado dentro do tempo", position = 1)
+    private String aviso;
 
 }

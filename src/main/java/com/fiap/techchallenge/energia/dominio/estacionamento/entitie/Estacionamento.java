@@ -1,7 +1,7 @@
 package com.fiap.techchallenge.energia.dominio.estacionamento.entitie;
 
-import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoDTO;
+import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoEncerradoDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.entitie.Usuario;
 import com.fiap.techchallenge.energia.dominio.veiculo.entitie.Veiculo;
 import lombok.AllArgsConstructor;
@@ -24,21 +24,21 @@ public class Estacionamento {
     private Long id;
     private String latitude;
     private String longitude;
-    private String modalidade;
     private Long tempo;
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFim;
+    private String modalidade;
+    private LocalDateTime datainicio;
+    private LocalDateTime datafim;
     private Double valor;
     private Boolean pago;
-    private Long idUsuario;
-    private Long idVeiculo;
+    private Long idusuario;
+    private Long idveiculo;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario" ,insertable=false, updatable=false)
+    @JoinColumn(name = "idusuario" ,insertable=false, updatable=false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "idVeiculo" ,insertable=false, updatable=false)
+    @JoinColumn(name = "idveiculo" ,insertable=false, updatable=false)
     private Veiculo veiculo;
 
     public EstacionamentoDTO ToEstacionamentoDTO() {
@@ -47,15 +47,32 @@ public class Estacionamento {
         estacionamentoDTO.setId(this.id);
         estacionamentoDTO.setLatitude(this.latitude);
         estacionamentoDTO.setLongitude(this.longitude);
-        estacionamentoDTO.setModalidade(this.modalidade);
         estacionamentoDTO.setTempo(this.tempo);
-        estacionamentoDTO.setDataInicio(this.dataInicio);
-        estacionamentoDTO.setDataFim(this.dataFim);
+        estacionamentoDTO.setModalidade(this.modalidade);
+        estacionamentoDTO.setDatainicio(this.datainicio);
+        estacionamentoDTO.setDatafim(this.datafim);
         estacionamentoDTO.setValor(this.valor);
         estacionamentoDTO.setPago(this.pago);
-        estacionamentoDTO.setIdUsuario(this.idUsuario);
-        estacionamentoDTO.setIdVeiculo(this.idVeiculo);
+        estacionamentoDTO.setIdusuario(this.idusuario);
+        estacionamentoDTO.setIdveiculo(this.idveiculo);
 
         return estacionamentoDTO;
+    }
+
+    public EstacionamentoEncerradoDTO ToEstacionamentoEncerradoDTO(String aviso) {
+        EstacionamentoEncerradoDTO estacionamentoEncerradoDTO = new EstacionamentoEncerradoDTO();
+
+        estacionamentoEncerradoDTO.setId(this.id);
+        estacionamentoEncerradoDTO.setLatitude(this.latitude);
+        estacionamentoEncerradoDTO.setLongitude(this.longitude);
+        estacionamentoEncerradoDTO.setTempo(this.tempo);
+        estacionamentoEncerradoDTO.setModalidade(this.modalidade);
+        estacionamentoEncerradoDTO.setDatainicio(this.datainicio);
+        estacionamentoEncerradoDTO.setDatafim(this.datafim);
+        estacionamentoEncerradoDTO.setValorTotal(this.valor);
+        estacionamentoEncerradoDTO.setStatus("Aguardando pagamento");
+        estacionamentoEncerradoDTO.setAviso(aviso);
+
+        return estacionamentoEncerradoDTO;
     }
 }

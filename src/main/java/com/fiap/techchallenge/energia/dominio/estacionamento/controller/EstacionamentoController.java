@@ -1,22 +1,16 @@
 package com.fiap.techchallenge.energia.dominio.estacionamento.controller;
 
-import com.fiap.techchallenge.energia.dominio.endereco.dto.request.EnderecoRequestDTO;
-import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoDTO;
-import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoEletrodomesticoDTO;
-import com.fiap.techchallenge.energia.dominio.endereco.service.EnderecoService;
+import com.fiap.techchallenge.energia.dominio.estacionamento.Modalidade;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.request.EstacionamentoRequestDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.service.EstacionamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/estacionamento")
@@ -29,16 +23,21 @@ public class EstacionamentoController {
         this.estacionamentoService = estacionamentoService;
     }
 
-    @PostMapping
-    public ResponseEntity<EstacionamentoDTO> save(@Valid @RequestBody EstacionamentoRequestDTO dto) {
+    @PostMapping("/{modalidade}")
+    public ResponseEntity save(@PathVariable("modalidade") Modalidade modalidade, @Valid @RequestBody EstacionamentoRequestDTO dto) {
         try {
-            var estacionamento = estacionamentoService.save(dto);
+            var estacionamento = estacionamentoService.save(dto, modalidade);
             URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand((estacionamento.getId())).toUri();
             return ResponseEntity.created(uri).body(estacionamento);
-        } catch (Exception e){
-            return ResponseEntity.badRequest().body(null);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity encerrarEstacionamento( @PathVariable Long id) {
+        var endereco = estacionamentoService.update(id);
+        return ResponseEntity.ok(endereco);
     }
 
 //    @GetMapping
@@ -51,13 +50,7 @@ public class EstacionamentoController {
 //        return ResponseEntity.ok().body(enderecoDTO);
 //    }
 //
-//    @PutMapping("/{id}")
-//    public ResponseEntity<EnderecoDTO> update(
-//            @Valid @RequestBody EnderecoRequestDTO enderecoDTO,
-//            @PathVariable Long id) {
-//        var endereco = enderecoService.update(id, enderecoDTO);
-//        return ResponseEntity.ok(endereco);
-//    }
+
 //
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Void> delete(@PathVariable Long id) {

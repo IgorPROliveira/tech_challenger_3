@@ -27,26 +27,25 @@ public class EstacionamentoRequestDTO {
     @NotBlank(message = "A Longitude deve ser preenchida")
     private String longitude;
 
-    @ApiModelProperty(value = "Modalidade", example = "POR_HORA", position = 1)
-    @NotBlank(message = "A modalidade deve ser preenchida")
-    private String modalidade;
-
-    @ApiModelProperty(value = "Tempo em horas inteiras", example = "60", position = 1)
+    @ApiModelProperty(value = "Tempo em horas inteiras", example = "1", position = 1)
     private Long tempo;
 
     @ApiModelProperty(value = "Código  com o ID do usuario", example = "1", position = 1)
     @NotNull(message = "id do usuario deve ser preenchido")
-    private Long idUsuario;
+    private Long idusuario;
 
     @ApiModelProperty(value = "Código  com o ID do veiculo", example = "1", position = 1)
     @NotNull(message = "id do veiculo deve ser preenchido")
-    private Long idVeiculo;
+    private Long idveiculo;
 
     @JsonIgnore
-    private LocalDateTime dataInico;
+    private String modalidade;
 
     @JsonIgnore
-    private LocalDateTime dataFim;
+    private LocalDateTime datainico;
+
+    @JsonIgnore
+    private LocalDateTime datafim;
 
     @JsonIgnore
     private Double valor;
@@ -60,17 +59,15 @@ public class EstacionamentoRequestDTO {
 
         estacionamento.setLatitude(this.latitude);
         estacionamento.setLongitude(this.longitude);
-        estacionamento.setModalidade(this.modalidade);
         estacionamento.setTempo(this.tempo);
-        estacionamento.setIdUsuario(this.idUsuario);
-        estacionamento.setIdVeiculo(this.idVeiculo);
-        estacionamento.setDataInicio(this.dataInico);
-        estacionamento.setDataFim(this.dataFim);
+        estacionamento.setModalidade(this.modalidade);
+        estacionamento.setDatainicio(this.datainico);
+        estacionamento.setDatafim(this.datafim);
         estacionamento.setTempo(this.tempo);
         estacionamento.setValor(this.valor);
         estacionamento.setPago(this.pago);
-        estacionamento.setIdUsuario(this.idUsuario);
-        estacionamento.setIdVeiculo(this.idVeiculo);
+        estacionamento.setIdusuario(this.idusuario);
+        estacionamento.setIdveiculo(this.idveiculo);
 
         return estacionamento;
     }
@@ -83,6 +80,6 @@ public class EstacionamentoRequestDTO {
 //        endereco.setRua(this.rua);
 //        endereco.setCep(this.cep);
 //        endereco.setComplemento(this.complemento);
-//        endereco.setIdusuario(this.idusuario);
+//        endereco.setidusuario(this.idusuario);
 //    }
 }

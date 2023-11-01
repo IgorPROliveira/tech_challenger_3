@@ -35,11 +35,31 @@ CREATE TABLE IF NOT exists  veiculo
 );
 
 
-CREATE TABLE IF NOT EXISTS forma_pagamento
+CREATE TABLE IF NOT EXISTS pagamento
 (
     id SERIAL PRIMARY KEY,
     tipo VARCHAR(255) NOT NULL,
     idUsuario BIGINT NOT NULL,
     FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS estacionamento
+(
+    id            SERIAL        PRIMARY KEY,
+    latitude      VARCHAR(255)  NOT NULL,
+    longitude     VARCHAR(255)  NOT NULL,
+    modalidade    VARCHAR(255)  NOT NULL,
+    tempo         INTEGER,
+    datainicio    TIMESTAMP     NOT NULL,
+    datafim       TIMESTAMP,
+    valor         VARCHAR(255),
+    pago          BOOLEAN       NOT NULL,
+    idVeiculo     BIGINT        NOT NULL,
+    idUsuario     BIGINT        NOT NULL,
+    idPagamento   BIGINT,
+    FOREIGN KEY (idVeiculo) REFERENCES veiculo (id) ON DELETE CASCADE,
+    FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE,
+    FOREIGN KEY (idPagamento) REFERENCES pagamento (id) ON DELETE CASCADE
+    );
+
 

@@ -62,10 +62,75 @@ CREATE TABLE IF NOT EXISTS estacionamento
     FOREIGN KEY (idPagamento) REFERENCES pagamento (id) ON DELETE CASCADE
     );
 
-CREATE INDEX IF NOT EXISTS idx_usuario ON usuario (id);
-CREATE INDEX IF NOT EXISTS idx_endereco ON endereco (id, idUsuario);
-CREATE INDEX IF NOT EXISTS idx_veiculo ON veiculo (id, idUsuario);
-CREATE INDEX IF NOT EXISTS idx_pagamento ON pagamento (id, idUsuario);
-CREATE INDEX IF NOT EXISTS idx_estacionamento ON estacionamento (id, idVeiculo, idUsuario, idPagamento);
+DO
+BEGIN
+   IF NOT EXISTS (
+      SELECT 1
+      FROM   pg_class c
+      JOIN   pg_namespace n ON n.oid = c.relnamespace
+      WHERE  c.relname = 'idx_usuario'
+      AND    n.nspname = 'public'  -- adjust schema name here
+      ) THEN
+
+CREATE INDEX idx_usuario ON usuario (id);
+END IF;
+END;
+
+DO
+BEGIN
+   IF NOT EXISTS (
+      SELECT 1
+      FROM   pg_class c
+      JOIN   pg_namespace n ON n.oid = c.relnamespace
+      WHERE  c.relname = 'idx_endereco'
+      AND    n.nspname = 'public'
+      ) THEN
+
+CREATE INDEX idx_endereco ON endereco (id, idUsuario);
+END IF;
+END;
+
+DO
+BEGIN
+   IF NOT EXISTS (
+      SELECT 1
+      FROM   pg_class c
+      JOIN   pg_namespace n ON n.oid = c.relnamespace
+      WHERE  c.relname = 'idx_veiculo'
+      AND    n.nspname = 'public'
+      ) THEN
+
+CREATE INDEX idx_veiculo ON veiculo (id, idUsuario);
+END IF;
+END;
+
+DO
+BEGIN
+   IF NOT EXISTS (
+      SELECT 1
+      FROM   pg_class c
+      JOIN   pg_namespace n ON n.oid = c.relnamespace
+      WHERE  c.relname = 'idx_pagamento'
+      AND    n.nspname = 'public'
+      ) THEN
+
+CREATE INDEX idx_pagamento ON pagamento (id, idUsuario);
+END IF;
+END;
+
+DO
+BEGIN
+   IF NOT EXISTS (
+      SELECT 1
+      FROM   pg_class c
+      JOIN   pg_namespace n ON n.oid = c.relnamespace
+      WHERE  c.relname = 'idx_estacionamento'
+      AND    n.nspname = 'public'
+      ) THEN
+
+CREATE INDEX idx_estacionamento ON estacionamento (id, idVeiculo, idUsuario, idPagamento);
+END IF;
+END;
+
 
 

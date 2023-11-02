@@ -2,6 +2,7 @@ package com.fiap.techchallenge.energia.dominio.veiculo.service;
 
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.request.VeiculoRequestDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.response.VeiculoDTO;
+import com.fiap.techchallenge.energia.dominio.veiculo.dto.response.VeiculoEstacionamentoDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.entitie.Veiculo;
 import com.fiap.techchallenge.energia.dominio.veiculo.repository.IVeiculoRepository;
 import com.fiap.techchallenge.energia.exception.service.DatabaseException;
@@ -31,9 +32,9 @@ public class VeiculoService {
     }
 
     @Transactional(readOnly = true)
-    public Page<VeiculoDTO> findAll(PageRequest pageRequest) {
+    public Page<VeiculoEstacionamentoDTO> findAll(PageRequest pageRequest) {
         var veiculos = veiculoRepository.findAll(pageRequest);
-        return veiculos.map(Veiculo::ToVeiculoDTO);
+        return veiculos.map(Veiculo::ToVeiculoEstacionamentoDTO);
     }
 
     @Transactional

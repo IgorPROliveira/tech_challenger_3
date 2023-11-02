@@ -1,8 +1,12 @@
 package com.fiap.techchallenge.energia.dominio.usuario.entitie;
 
+import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoDTO;
 import com.fiap.techchallenge.energia.dominio.endereco.entitie.Endereco;
+import com.fiap.techchallenge.energia.dominio.estacionamento.entitie.Estacionamento;
+import com.fiap.techchallenge.energia.dominio.pagamento.entitie.Pagamento;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioDTO;
-import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioPessoaDTO;
+import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioInformacaoDTO;
+import com.fiap.techchallenge.energia.dominio.veiculo.entitie.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +14,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,6 +38,14 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> endereco;
+    @OneToMany(mappedBy = "usuario")
+    private List<Pagamento> pagamentos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Veiculo> veiculos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Estacionamento> estacionamentos;
+
+
 
     public UsuarioDTO ToUsuarioDTO() {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -48,7 +61,8 @@ public class Usuario {
         return usuarioDTO;
     }
 
-    public UsuarioPessoaDTO ToUsuarioPessoaDTO(){
-        return new UsuarioPessoaDTO(this);
+    public UsuarioInformacaoDTO ToUsuarioInformacaoDTO(){
+        return new UsuarioInformacaoDTO(this);
     }
+
 }

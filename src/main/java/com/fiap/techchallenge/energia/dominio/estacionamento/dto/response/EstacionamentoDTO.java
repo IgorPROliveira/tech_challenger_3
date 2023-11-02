@@ -1,5 +1,6 @@
 package com.fiap.techchallenge.energia.dominio.estacionamento.dto.response;
 
+import com.fiap.techchallenge.energia.dominio.estacionamento.entitie.Estacionamento;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -64,4 +65,20 @@ public class EstacionamentoDTO {
     @ApiModelProperty(value = "Status", example = "Estacionamento iniciado com sucesso", position = 1)
     private String status;
 
+    public EstacionamentoDTO(Estacionamento estacionamento) {
+        this.id = estacionamento.getId();
+        this.latitude = estacionamento.getLatitude();
+        this.longitude = estacionamento.getLongitude();
+        this.modalidade = estacionamento.getModalidade();
+        this.tempo = estacionamento.getTempo();
+        this.datainicio = estacionamento.getDatainicio();
+        this.datafim = estacionamento.getDatafim();
+        this.valor = estacionamento.getValor();
+        this.pago = estacionamento.getPago();
+        this.idusuario = estacionamento.getIdusuario();
+        this.idveiculo = estacionamento.getIdveiculo();
+        this.idpagamento = estacionamento.getIdpagamento();
+
+    }
 }
+

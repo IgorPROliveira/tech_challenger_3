@@ -58,7 +58,7 @@ public class EstacionamentoService {
                 if (estacionamentoEntity.get().getDatafim().isAfter(dataEncerramento)) {
                     return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("Aguardando pagamento", "Encerrado dentro do tempo");
                 } else {
-                    long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatafim(), dataEncerramento);
+                    Long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatafim(), dataEncerramento);
                     if (diferenca > 60) {
                         Double horas = diferenca / 60.0d;
                         int valorArredondado = (int) Math.ceil(horas);

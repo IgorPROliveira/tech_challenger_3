@@ -1,41 +1,33 @@
 package com.fiap.techchallenge.energia.dominio.estacionamento.service;
 
-import com.fiap.techchallenge.energia.dominio.endereco.dto.request.EnderecoRequestDTO;
-import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoDTO;
-import com.fiap.techchallenge.energia.dominio.endereco.dto.response.EnderecoEletrodomesticoDTO;
-import com.fiap.techchallenge.energia.dominio.endereco.entitie.Endereco;
-import com.fiap.techchallenge.energia.dominio.endereco.repository.IEnderecoRepository;
 import com.fiap.techchallenge.energia.dominio.estacionamento.Modalidade;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.request.EstacionamentoRequestDTO;
+import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoAlertaDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoEncerradoDTO;
-import com.fiap.techchallenge.energia.dominio.estacionamento.entitie.Estacionamento;
 import com.fiap.techchallenge.energia.dominio.estacionamento.repository.IEstacionamentoRepository;
-import com.fiap.techchallenge.energia.exception.service.DatabaseException;
-import com.fiap.techchallenge.energia.exception.service.ServiceNotFoundedException;
+import com.fiap.techchallenge.energia.dominio.pagamento.Tipo;
+import com.fiap.techchallenge.energia.dominio.pagamento.entitie.Pagamento;
+import com.fiap.techchallenge.energia.dominio.pagamento.repository.IPagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class EstacionamentoService {
 
     private final IEstacionamentoRepository estacionamentoRepository;
+    private final IPagamentoRepository pagamentoRepository;
 
     @Autowired
-    public EstacionamentoService(IEstacionamentoRepository estacionamentoRepository) {
+    public EstacionamentoService(IEstacionamentoRepository estacionamentoRepository, IPagamentoRepository pagamentoRepository) {
         this.estacionamentoRepository = estacionamentoRepository;
+        this.pagamentoRepository = pagamentoRepository;
     }
+
 
     @Transactional
     public EstacionamentoDTO save(EstacionamentoRequestDTO estacionamentoDTO, Modalidade modalidade) throws Exception {
@@ -46,6 +38,7 @@ public class EstacionamentoService {
             if (estacionamentoDTO.getTempo() == null || estacionamentoDTO.getTempo().equals(0L)) {
                 throw new Exception("O campo tempo deve ser preenchido na modalidade por tempo FIXO");
             } else {
+                estacionamentoDTO.setTempo(null);
                 estacionamentoDTO.setDatafim(estacionamentoDTO.getDatainico().plusMinutes(estacionamentoDTO.getTempo() * 60));
                 estacionamentoDTO.setValor(7.5 * estacionamentoDTO.getTempo());
             }
@@ -53,88 +46,109 @@ public class EstacionamentoService {
 
         var estacionamentoEntity = estacionamentoDTO.toEntity();
         var estacionamentoSaved = estacionamentoRepository.save(estacionamentoEntity);
-        return estacionamentoSaved.ToEstacionamentoDTO();
+        return estacionamentoSaved.ToEstacionamentoDTO("Estacionamento iniciado com sucesso!");
     }
 
     @Transactional
-    public EstacionamentoEncerradoDTO update(Long id) {
-        try {
-            Estacionamento estacionamentoEntity = estacionamentoRepository.getReferenceById(id);
+    public EstacionamentoEncerradoDTO encerrarEstacionamento(Long id) throws Exception {
+        var estacionamentoEntity = estacionamentoRepository.findById(id);
+        if (estacionamentoEntity.isPresent() && !estacionamentoEntity.get().getPago()) {
             LocalDateTime dataEncerramento = LocalDateTime.now();
-            if(estacionamentoEntity.getModalidade().equals("FIXO")){
-                if(estacionamentoEntity.getDatafim().isAfter(dataEncerramento)){
-                    return estacionamentoEntity.ToEstacionamentoEncerradoDTO("Encerrado dentro do tempo");
+            if (estacionamentoEntity.get().getModalidade().equals("FIXO")) {
+                if (estacionamentoEntity.get().getDatafim().isAfter(dataEncerramento)) {
+                    return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("Aguardando pagamento", "Encerrado dentro do tempo");
                 } else {
-                    long diferenca = ChronoUnit.MINUTES.between(dataEncerramento, estacionamentoEntity.getDatafim());
-                    if(diferenca > 60){
-                         //calculo quantas horas a mais serão cobrados
+                    long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatafim(), dataEncerramento);
+                    if (diferenca > 60) {
+                        Double horas = diferenca / 60.0d;
+                        int valorArredondado = (int) Math.ceil(horas);
+                        estacionamentoEntity.get().setTempo(estacionamentoEntity.get().getTempo() + valorArredondado);
+                        estacionamentoEntity.get().setDatafim(dataEncerramento);
+                        estacionamentoEntity.get().setValor(estacionamentoEntity.get().getTempo() * 7.5);
+                        estacionamentoRepository.save(estacionamentoEntity.get());
+                        return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("Aguardando pagamento", "Estacionamento encerrado após o período: Será cobrado " + valorArredondado + " hora a mais!");
                     } else {
-                        estacionamentoEntity.setTempo(estacionamentoEntity.getTempo()+1);
-                        estacionamentoEntity.setDatafim(dataEncerramento);
-                        estacionamentoEntity.setValor(estacionamentoEntity.getTempo() * 7.5);
-                        estacionamentoRepository.save(estacionamentoEntity);
-                        return estacionamentoEntity.ToEstacionamentoEncerradoDTO("Estacionamento encerrado após o período: Será cobrado 1 hora a mais!");
+                        estacionamentoEntity.get().setTempo(estacionamentoEntity.get().getTempo() + 1);
+                        estacionamentoEntity.get().setDatafim(dataEncerramento);
+                        estacionamentoEntity.get().setValor(estacionamentoEntity.get().getTempo() * 7.5);
+                        estacionamentoRepository.save(estacionamentoEntity.get());
+                        return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("Aguardando pagamento", "Estacionamento encerrado após o período: Será cobrado 1 hora a mais!");
                     }
                 }
             } else {
-return null;
+                long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatainicio(), dataEncerramento);
+                Double horas = diferenca / 60.0d;
+                if (horas > 15.0d) {
+                    int valorArredondado = (int) Math.ceil(horas);
+                    estacionamentoEntity.get().setTempo(Long.valueOf(valorArredondado));
+                    estacionamentoEntity.get().setDatafim(dataEncerramento);
+                    estacionamentoEntity.get().setValor(estacionamentoEntity.get().getTempo() * 7.5);
+                    estacionamentoRepository.save(estacionamentoEntity.get());
+                    return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("Aguardando pagamento", "Estacionamento encerrado após " + valorArredondado + " horas");
+                } else {
+                    estacionamentoEntity.get().setTempo(0L);
+                    estacionamentoEntity.get().setDatafim(dataEncerramento);
+                    estacionamentoEntity.get().setValor(0d);
+                    estacionamentoEntity.get().setPago(true);
+                    estacionamentoRepository.save(estacionamentoEntity.get());
+                    return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("PAGO", "Não foi atingido o tempo para cobrança");
+                }
+
             }
-            
-        } catch (EntityNotFoundException e) {
-            throw new ServiceNotFoundedException("Endereço não encontrado, id: " + id);
+        } else {
+            throw new Exception("Não foi encontrado um estacionamento com o ID informado ou o Mesmo já foi encerrado!");
         }
     }
-//
-//    @Transactional(readOnly = true)
-//    public Page<EnderecoEletrodomesticoDTO> findAll(PageRequest pageRequest) { //alterar pelo DTO a ser criado para retornar o endereco vinculado as pessoas e eletrodomesticos
-//        var enderecos = enderecoRepository.findAll(pageRequest);
-//        return  enderecos.map(Endereco::ToEnderecoEletrodomesticoDTO); //alterar pelo DTO a ser criado para retornar o endereco vinculado as pessoas e eletrodomesticos
-//    }
-//
 
-//
-//    @Transactional
-//    public void delete(Long id)  {
-//        try {
-//            enderecoRepository.deleteById(id);
-//        } catch (DataIntegrityViolationException e) {
-//            throw new DatabaseException("Violação de integridade dos dados");
-//        }
-//    }
-//
-////    @Transactional(readOnly = true)
-////    public EnderecoEletrodomesticoDTO findById(Long id) {
-////        var endereco = enderecoRepository.findById(id).orElseThrow(
-////                () -> new ServiceNotFoundedException("Endereço não encontrado")
-////        );
-////        return endereco.ToEnderecoEletrodomesticoDTO();
-////    }
-//
-//    @Transactional(readOnly = true)
-//    public ResponseEntity<EnderecoEletrodomesticoDTO> findById(Long id) {
-//        var endereco = enderecoRepository.findById(id);
-//        if(endereco.isPresent()) {
-//            return ResponseEntity.ok(endereco.get().ToEnderecoEletrodomesticoDTO());
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
-//
-////    @Transactional(readOnly = true)
-////    public List<EnderecoEletrodomesticoDTO> findByParam(String nomeRua, String nomeBairro, String nomeMunicipio) {
-////        try{
-////            var endereco = enderecoRepository.findByRuaOrBairroOrMunicipio(nomeRua, nomeBairro, nomeMunicipio);
-////            return endereco.stream().map(EnderecoEletrodomesticoDTO::new).collect(Collectors.toList());
-////        } catch (EntityNotFoundException e) {
-////            throw new ServiceNotFoundedException("Endereco não encontrada");
-////        }
-////    }
-//
-//    @Transactional(readOnly = true)
-//    public ResponseEntity<List<EnderecoEletrodomesticoDTO>> findByParam(String nomeRua, String nomeBairro, String nomeMunicipio) {
-//        var endereco = enderecoRepository.findByRuaOrBairroOrMunicipio(nomeRua, nomeBairro, nomeMunicipio);
-//        if (!endereco.isEmpty()){
-//            return ResponseEntity.ok(endereco.stream().map(EnderecoEletrodomesticoDTO::new).collect(Collectors.toList()));
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
+    public EstacionamentoAlertaDTO notificar(Long id) throws Exception {
+        LocalDateTime dataHoraAtual = LocalDateTime.now();
+        var estacionamentoEntity = estacionamentoRepository.findById(id);
+        if (estacionamentoEntity.isPresent()) {
+            if (estacionamentoEntity.get().getPago()) {
+                return estacionamentoEntity.get().ToEstacionamentoAlertaDTO("Este estacionamento já foi encerrado!");
+            } else {
+                if (estacionamentoEntity.get().getModalidade().equals("FIXO")) {
+                    if (dataHoraAtual.isAfter(estacionamentoEntity.get().getDatafim())) {
+                        return estacionamentoEntity.get().ToEstacionamentoAlertaDTO("O tempo de estacionamento contratado já esgotou! Será adicionado automaticamente mais 1 hora!");
+                    }
+                    Long diferenca = ChronoUnit.MINUTES.between(dataHoraAtual, estacionamentoEntity.get().getDatafim());
+                    return estacionamentoEntity.get().ToEstacionamentoAlertaDTO("Falta " + diferenca + " minutos para acabar seu tempo de estacionamento");
+                } else {
+
+                    Long diferenca = ChronoUnit.HOURS.between(estacionamentoEntity.get().getDatainicio(), dataHoraAtual);
+                    if (diferenca.equals(0)) {
+                        diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatainicio(), dataHoraAtual);
+                        return estacionamentoEntity.get().ToEstacionamentoAlertaDTO("Você já está estacionado a " + diferenca + " minutos. Caso não encerre será cobrado automaticamente mais 1 hora!");
+                    }
+                    return estacionamentoEntity.get().ToEstacionamentoAlertaDTO("Você já está estacionado a " + diferenca + " horas. Caso não encerre será cobrado automaticamente mais 1 hora!");
+                }
+            }
+
+        } else {
+            throw new Exception("Não foi encontrado um estacionamento com o ID informado!");
+        }
+    }
+
+    public EstacionamentoDTO pagarFinalizarEstacionamento(Long id, Long idPagamento) throws Exception {
+        var estacionamentoEntity = estacionamentoRepository.findById(id);
+        if (estacionamentoEntity.isPresent() && !estacionamentoEntity.get().getPago()) {
+            Pagamento pagamento = pagamentoRepository.findByIdAndAndIdusuario(idPagamento, estacionamentoEntity.get().getIdusuario());
+            if (pagamento != null) {
+                if (estacionamentoEntity.get().getModalidade().equals("POR_HORA")) {
+                    if (pagamento.getTipo().equals(Tipo.PIX)) {
+                        throw new Exception("Não é possível pagar com PIX o estacionamento por tempo FIXO");
+                    }
+                }
+                estacionamentoEntity.get().setIdpagamento(idPagamento);
+                estacionamentoEntity.get().setPago(true);
+                estacionamentoRepository.save(estacionamentoEntity.get());
+                return estacionamentoEntity.get().ToEstacionamentoDTO("Estacionamento PAGO e encerrado com sucesso!");
+            } else {
+                throw new Exception("Não foi encontrado a forma de pagamento informada para o Usuario");
+            }
+        } else {
+            throw new Exception("Não foi encontrado um estacionamento com o ID informado ou o Mesmo já foi encerrado!");
+        }
+    }
 }
+

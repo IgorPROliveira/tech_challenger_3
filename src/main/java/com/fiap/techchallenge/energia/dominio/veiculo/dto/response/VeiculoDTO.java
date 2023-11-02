@@ -36,4 +36,7 @@ public class VeiculoDTO {
         this.modelo = veiculo.getModelo();
         this.idusuario = veiculo.getIdusuario();
     }
+
+    public VeiculoDTO(Object veiculo) {
+    }
 }

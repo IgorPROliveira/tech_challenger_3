@@ -1,5 +1,6 @@
 package com.fiap.techchallenge.energia.dominio.estacionamento.dto.response;
 
+import com.fiap.techchallenge.energia.dominio.estacionamento.entitie.Estacionamento;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,4 +55,22 @@ public class EstacionamentoDTO {
     @NotNull(message = "id do veiculo deve ser preenchido")
     private Long idveiculo;
 
+    public EstacionamentoDTO(Estacionamento estacionamento) {
+        this.id = estacionamento.getId();
+        this.latitude = estacionamento.getLatitude();
+        this.longitude = estacionamento.getLongitude();
+        this.modalidade = estacionamento.getModalidade();
+        this.tempo = estacionamento.getTempo();
+        this.datainicio = estacionamento.getDatainicio();
+        this.datafim = estacionamento.getDatafim();
+        this.valor = estacionamento.getValor();
+        this.pago = estacionamento.getPago();
+        this.idveiculo = estacionamento.getIdveiculo();
+
+    }
+
+
+    public EstacionamentoDTO(Object estacionamento) {
+    }
 }
+

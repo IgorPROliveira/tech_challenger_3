@@ -3,6 +3,7 @@ package com.fiap.techchallenge.energia.dominio.veiculo.controller;
 
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.request.VeiculoRequestDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.dto.response.VeiculoDTO;
+import com.fiap.techchallenge.energia.dominio.veiculo.dto.response.VeiculoEstacionamentoDTO;
 import com.fiap.techchallenge.energia.dominio.veiculo.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<VeiculoDTO>> findAll(
+    public ResponseEntity<Page<VeiculoEstacionamentoDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage)
     {

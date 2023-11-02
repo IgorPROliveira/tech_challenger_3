@@ -61,15 +61,15 @@ public class EstacionamentoService {
         try {
             Estacionamento estacionamentoEntity = estacionamentoRepository.getReferenceById(id);
             LocalDateTime dataEncerramento = LocalDateTime.now();
-            if(estacionamentoEntity.getModalidade().equals("FIXO")){
-                if(estacionamentoEntity.getDatafim().isAfter(dataEncerramento)){
+            if (estacionamentoEntity.getModalidade().equals("FIXO")) {
+                if (estacionamentoEntity.getDatafim().isAfter(dataEncerramento)) {
                     return estacionamentoEntity.ToEstacionamentoEncerradoDTO("Encerrado dentro do tempo");
                 } else {
                     long diferenca = ChronoUnit.MINUTES.between(dataEncerramento, estacionamentoEntity.getDatafim());
-                    if(diferenca > 60){
-                         //calculo quantas horas a mais serão cobrados
+                    if (diferenca > 60) {
+                        //calculo quantas horas a mais serão cobrados
                     } else {
-                        estacionamentoEntity.setTempo(estacionamentoEntity.getTempo()+1);
+                        estacionamentoEntity.setTempo(estacionamentoEntity.getTempo() + 1);
                         estacionamentoEntity.setDatafim(dataEncerramento);
                         estacionamentoEntity.setValor(estacionamentoEntity.getTempo() * 7.5);
                         estacionamentoRepository.save(estacionamentoEntity);
@@ -77,12 +77,13 @@ public class EstacionamentoService {
                     }
                 }
             } else {
-return null;
+                return null;
             }
-            
+
         } catch (EntityNotFoundException e) {
             throw new ServiceNotFoundedException("Endereço não encontrado, id: " + id);
         }
+        return null;
     }
 //
 //    @Transactional(readOnly = true)

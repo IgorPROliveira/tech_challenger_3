@@ -15,7 +15,7 @@ import java.net.URI;
 
 
 @RestController
-@RequestMapping("/forma_pagamento")
+@RequestMapping("/pagamento")
 public class PagamentoController {
     private final PagamentoService pagamentoService;
 

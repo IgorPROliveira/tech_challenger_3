@@ -20,7 +20,7 @@ import javax.validation.constraints.NotNull;
 @ApiModel(description = "Representa um objeto de Pagamento")
 public class PagamentoRequestDTO {
     @ApiModelProperty(value = "Tipo de pagamento (CARTAO_CREDITO, CARTAO_DEBITO, PIX)", example = "CARTAO_CREDITO", position = 1)
-    @NotBlank(message = "Tipo de pagamento deve ser preenchido")
+    @NotNull(message = "Tipo de pagamento deve ser preenchido")
     private Tipo tipo; // Pode ser uma string representando o tipo de pagamento
     @ApiModelProperty(value = "Código  com o ID do usuario", example = "1", position = 1)
     @NotNull(message = "id do usuario deve ser preenchido")

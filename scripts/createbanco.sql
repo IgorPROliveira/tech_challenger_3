@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS estacionamento
     tempo         INTEGER,
     datainicio    TIMESTAMP     NOT NULL,
     datafim       TIMESTAMP,
-    valor         VARCHAR(255),
+    valor         DECIMAL,
     pago          BOOLEAN       NOT NULL,
     idVeiculo     BIGINT        NOT NULL,
     idUsuario     BIGINT        NOT NULL,
@@ -61,5 +61,11 @@ CREATE TABLE IF NOT EXISTS estacionamento
     FOREIGN KEY (idUsuario) REFERENCES usuario (id) ON DELETE CASCADE,
     FOREIGN KEY (idPagamento) REFERENCES pagamento (id) ON DELETE CASCADE
     );
+
+CREATE INDEX IF NOT EXISTS idx_usuario ON usuario (id);
+CREATE INDEX IF NOT EXISTS idx_endereco ON endereco (id, idUsuario);
+CREATE INDEX IF NOT EXISTS idx_veiculo ON veiculo (id, idUsuario);
+CREATE INDEX IF NOT EXISTS idx_pagamento ON pagamento (id, idUsuario);
+CREATE INDEX IF NOT EXISTS idx_estacionamento ON estacionamento (id, idVeiculo, idUsuario, idPagamento);
 
 

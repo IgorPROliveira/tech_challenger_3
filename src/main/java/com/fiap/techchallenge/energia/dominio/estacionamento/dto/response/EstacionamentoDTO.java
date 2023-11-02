@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EstacionamentoDTO {
 
+    public EstacionamentoDTO(String status) {
+        this.status = status;
+    }
+
     @ApiModelProperty(value = "ID do endereco", example = "1", position = 1)
     private Long id;
 
@@ -53,5 +57,11 @@ public class EstacionamentoDTO {
     @ApiModelProperty(value = "Código  com o ID do veiculo", example = "1", position = 1)
     @NotNull(message = "id do veiculo deve ser preenchido")
     private Long idveiculo;
+
+    @ApiModelProperty(value = "Código  com o ID do pagamento", example = "1", position = 1)
+    private Long idpagamento;
+
+    @ApiModelProperty(value = "Status", example = "Estacionamento iniciado com sucesso", position = 1)
+    private String status;
 
 }

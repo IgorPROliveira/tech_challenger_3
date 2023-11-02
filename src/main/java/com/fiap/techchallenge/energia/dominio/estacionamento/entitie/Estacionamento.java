@@ -1,7 +1,9 @@
 package com.fiap.techchallenge.energia.dominio.estacionamento.entitie;
 
+import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoAlertaDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoEncerradoDTO;
+import com.fiap.techchallenge.energia.dominio.pagamento.entitie.Pagamento;
 import com.fiap.techchallenge.energia.dominio.usuario.entitie.Usuario;
 import com.fiap.techchallenge.energia.dominio.veiculo.entitie.Veiculo;
 import lombok.AllArgsConstructor;
@@ -32,6 +34,7 @@ public class Estacionamento {
     private Boolean pago;
     private Long idusuario;
     private Long idveiculo;
+    private Long idpagamento;
 
     @ManyToOne
     @JoinColumn(name = "idusuario" ,insertable=false, updatable=false)
@@ -41,7 +44,11 @@ public class Estacionamento {
     @JoinColumn(name = "idveiculo" ,insertable=false, updatable=false)
     private Veiculo veiculo;
 
-    public EstacionamentoDTO ToEstacionamentoDTO() {
+    @ManyToOne
+    @JoinColumn(name = "idpagamento" ,insertable=false, updatable=false)
+    private Pagamento pagamento;
+
+    public EstacionamentoDTO ToEstacionamentoDTO(String status) {
         EstacionamentoDTO estacionamentoDTO = new EstacionamentoDTO();
 
         estacionamentoDTO.setId(this.id);
@@ -55,11 +62,13 @@ public class Estacionamento {
         estacionamentoDTO.setPago(this.pago);
         estacionamentoDTO.setIdusuario(this.idusuario);
         estacionamentoDTO.setIdveiculo(this.idveiculo);
+        estacionamentoDTO.setIdpagamento(this.idpagamento);
+        estacionamentoDTO.setStatus(status);
 
         return estacionamentoDTO;
     }
 
-    public EstacionamentoEncerradoDTO ToEstacionamentoEncerradoDTO(String aviso) {
+    public EstacionamentoEncerradoDTO ToEstacionamentoEncerradoDTO(String status, String aviso) {
         EstacionamentoEncerradoDTO estacionamentoEncerradoDTO = new EstacionamentoEncerradoDTO();
 
         estacionamentoEncerradoDTO.setId(this.id);
@@ -70,9 +79,18 @@ public class Estacionamento {
         estacionamentoEncerradoDTO.setDatainicio(this.datainicio);
         estacionamentoEncerradoDTO.setDatafim(this.datafim);
         estacionamentoEncerradoDTO.setValorTotal(this.valor);
-        estacionamentoEncerradoDTO.setStatus("Aguardando pagamento");
+        estacionamentoEncerradoDTO.setStatus(status);
         estacionamentoEncerradoDTO.setAviso(aviso);
 
         return estacionamentoEncerradoDTO;
+    }
+
+    public EstacionamentoAlertaDTO ToEstacionamentoAlertaDTO(String mensagem) {
+        EstacionamentoAlertaDTO estacionamentoAlertaDTO = new EstacionamentoAlertaDTO();
+
+        estacionamentoAlertaDTO.setModalidade(this.modalidade);
+        estacionamentoAlertaDTO.setMensagem(mensagem);
+
+        return estacionamentoAlertaDTO;
     }
 }

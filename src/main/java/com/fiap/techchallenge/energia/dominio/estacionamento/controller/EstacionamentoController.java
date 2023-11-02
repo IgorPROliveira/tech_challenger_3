@@ -2,9 +2,12 @@ package com.fiap.techchallenge.energia.dominio.estacionamento.controller;
 
 import com.fiap.techchallenge.energia.dominio.estacionamento.Modalidade;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.request.EstacionamentoRequestDTO;
+import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoAlertaDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoDTO;
+import com.fiap.techchallenge.energia.dominio.estacionamento.dto.response.EstacionamentoEncerradoDTO;
 import com.fiap.techchallenge.energia.dominio.estacionamento.service.EstacionamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,67 +27,42 @@ public class EstacionamentoController {
     }
 
     @PostMapping("/{modalidade}")
-    public ResponseEntity save(@PathVariable("modalidade") Modalidade modalidade, @Valid @RequestBody EstacionamentoRequestDTO dto) {
+    public ResponseEntity<EstacionamentoDTO> inciar(@PathVariable("modalidade") Modalidade modalidade, @Valid @RequestBody EstacionamentoRequestDTO dto) {
         try {
             var estacionamento = estacionamentoService.save(dto, modalidade);
-            URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand((estacionamento.getId())).toUri();
-            return ResponseEntity.created(uri).body(estacionamento);
+            return ResponseEntity.status(HttpStatus.CREATED).body(estacionamento);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(new EstacionamentoDTO(e.getMessage()));
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity encerrarEstacionamento( @PathVariable Long id) {
-        var endereco = estacionamentoService.update(id);
-        return ResponseEntity.ok(endereco);
+    @GetMapping
+    public ResponseEntity<EstacionamentoAlertaDTO> alertaTempoEstacionamento(@RequestParam Long id){
+        try {
+            var estacionamento = estacionamentoService.notificar(id);
+            return ResponseEntity.ok().body(estacionamento);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new EstacionamentoAlertaDTO(e.getMessage()));
+        }
     }
 
-//    @GetMapping
-//    public ResponseEntity<Page<EnderecoEletrodomesticoDTO>> findAll(
-//            @RequestParam(value = "page", defaultValue = "0") Integer page,
-//            @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage)
-//    {
-//        PageRequest pageRequest = PageRequest.of(page, linesPerPage);
-//        var enderecoDTO = enderecoService.findAll(pageRequest);
-//        return ResponseEntity.ok().body(enderecoDTO);
-//    }
-//
+    @PutMapping("encerrar/{id}")
+    public ResponseEntity<EstacionamentoEncerradoDTO> encerrar(@PathVariable Long id) {
+        try {
+            var estacionamento = estacionamentoService.encerrarEstacionamento(id);
+            return ResponseEntity.status(HttpStatus.CREATED).body(estacionamento);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new EstacionamentoEncerradoDTO(e.getMessage()));
+        }
+    }
 
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> delete(@PathVariable Long id) {
-//        enderecoService.delete(id);
-//        return ResponseEntity.noContent().build();
-//    }
-//
-////    @GetMapping("/{id}")
-////    public ResponseEntity<EnderecoEletrodomesticoDTO> findById(@PathVariable Long id) {
-////        var endereco = enderecoService.findById(id);
-////        return ResponseEntity.ok(endereco);
-////    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<EnderecoEletrodomesticoDTO> findById(@PathVariable Long id) {
-//        return enderecoService.findById(id);
-//    }
-//
-////    @GetMapping("/Pesquisar")
-////    public ResponseEntity<List<EnderecoEletrodomesticoDTO>> findByParam(
-////            @RequestParam String rua,
-////            @RequestParam String bairro,
-////            @RequestParam String municipio
-////    ) {
-////        var endereco = enderecoService.findByParam(rua, bairro, municipio);
-////        return ResponseEntity.ok(endereco);
-////    }
-//
-//    @GetMapping("/Pesquisar")
-//    public ResponseEntity<List<EnderecoEletrodomesticoDTO>> findByParam(
-//            @RequestParam(required = false) String rua,
-//            @RequestParam(required = false) String bairro,
-//            @RequestParam(required = false) String municipio
-//    ) {
-//        return enderecoService.findByParam(rua, bairro, municipio);
-//    }
+    @PutMapping("pagar/{id}")
+    public ResponseEntity<EstacionamentoDTO> pagar(@PathVariable Long id, @RequestParam Long idPagamento) {
+        try {
+            var estacionamento = estacionamentoService.pagarFinalizarEstacionamento(id, idPagamento);
+            return ResponseEntity.status(HttpStatus.CREATED).body(estacionamento);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new EstacionamentoDTO(e.getMessage()));
+        }
+    }
 }

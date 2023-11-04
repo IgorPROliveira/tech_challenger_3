@@ -2,7 +2,7 @@ package com.fiap.techchallenge.energia.dominio.usuario.controller;
 
 import com.fiap.techchallenge.energia.dominio.usuario.dto.request.UsuarioRequestDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioDTO;
-import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioPessoaDTO;
+import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioInformacaoDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,13 +35,13 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UsuarioPessoaDTO>> findAll(
+    public ResponseEntity<Page<UsuarioInformacaoDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage)
     {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage);
-        var userpessoasDTO = usuarioService.findAll(pageRequest);
-        return ResponseEntity.ok().body(userpessoasDTO);
+        var UsuarioDTO = usuarioService.findAll(pageRequest);
+        return ResponseEntity.ok().body(UsuarioDTO);
 
     }
 
@@ -52,7 +52,7 @@ public class UsuarioController {
 //    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioPessoaDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<UsuarioInformacaoDTO> findById(@PathVariable Long id) {
         return usuarioService.findById(id);
     }
 

@@ -31,9 +31,13 @@ public class VeiculoDTO {
     private Long idusuario;
 
     public VeiculoDTO(Veiculo veiculo){
+        this.id = veiculo.getId();
         this.placa = veiculo.getPlaca();
         this.marca = veiculo.getMarca();
         this.modelo = veiculo.getModelo();
         this.idusuario = veiculo.getIdusuario();
+    }
+
+    public VeiculoDTO(Object veiculo) {
     }
 }

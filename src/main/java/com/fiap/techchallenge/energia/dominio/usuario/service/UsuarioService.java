@@ -2,7 +2,7 @@ package com.fiap.techchallenge.energia.dominio.usuario.service;
 
 import com.fiap.techchallenge.energia.dominio.usuario.dto.request.UsuarioRequestDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioDTO;
-import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioPessoaDTO;
+import com.fiap.techchallenge.energia.dominio.usuario.dto.response.UsuarioInformacaoDTO;
 import com.fiap.techchallenge.energia.dominio.usuario.entitie.Usuario;
 import com.fiap.techchallenge.energia.dominio.usuario.repository.IUsuarioRepository;
 import com.fiap.techchallenge.energia.exception.service.DatabaseException;
@@ -32,9 +32,9 @@ public class UsuarioService {
     }
 
     @Transactional(readOnly = true)
-    public Page<UsuarioPessoaDTO> findAll(PageRequest pageRequest) {
+    public Page<UsuarioInformacaoDTO> findAll(PageRequest pageRequest) {
         var usuarios = usuarioRepository.findAll(pageRequest);
-        return  usuarios.map(Usuario::ToUsuarioPessoaDTO);
+        return  usuarios.map(Usuario::ToUsuarioInformacaoDTO);
     }
 
     @Transactional
@@ -69,10 +69,10 @@ public class UsuarioService {
 //    }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<UsuarioPessoaDTO> findById(Long id) {
+    public ResponseEntity<UsuarioInformacaoDTO> findById(Long id) {
         var usuario = usuarioRepository.findById(id);
         if(usuario.isPresent()) {
-            return ResponseEntity.ok(usuario.get().ToUsuarioPessoaDTO());
+            return ResponseEntity.ok(usuario.get().ToUsuarioInformacaoDTO());
         }
         return ResponseEntity.notFound().build();
     }

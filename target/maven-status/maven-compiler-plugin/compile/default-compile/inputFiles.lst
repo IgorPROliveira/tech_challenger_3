@@ -1,33 +1,41 @@
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\dto\request\PessoaRequestDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\ApisApplication.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\eletrodomestico\dto\request\EletrodomesticoRequestDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\dto\response\PessoaDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\entitie\PessoaSexo.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\eletrodomestico\repository\EletrodomesticoRepository.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\eletrodomestico\service\EletrodomesticoService.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\response\UsuarioPessoaDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\request\UsuarioRequestDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\controller\UsuarioController.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\repository\IPessoaRepository.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\repository\IUsuarioRepository.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\exception\service\ServiceNotFoundedException.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\eletrodomestico\entitie\Eletrodomestico.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\controller\EnderecoController.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\eletrodomestico\dto\response\EletrodomesticoDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\controller\PessoaController.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\entitie\Usuario.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\exception\service\DatabaseException.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\response\UsuarioDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\entitie\Endereco.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\config\ValidatorBean.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\entitie\PessoaParentesco.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\repository\IEnderecoRepository.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\response\EnderecoEletrodomesticoDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\response\EnderecoDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\service\EnderecoService.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\service\PessoaService.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\request\EnderecoRequestDTO.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\eletrodomestico\controller\EletrodomesticoController.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\pessoa\entitie\Pessoa.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\config\SpringFoxConfig.java
-C:\Projeto\TechChallenge\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\service\UsuarioService.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\repository\IEstacionamentoRepository.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\entitie\Veiculo.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\controller\EstacionamentoController.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\repository\IPagamentoRepository.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\repository\IVeiculoRepository.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\service\UsuarioService.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\response\EnderecoEletrodomesticoDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\Modalidade.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\config\ValidatorBean.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\service\EnderecoService.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\response\UsuarioPessoaDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\controller\VeiculoController.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\entitie\Estacionamento.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\dto\request\VeiculoRequestDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\dto\request\PagamentoRequestDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\service\EstacionamentoService.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\request\EnderecoRequestDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\entitie\Endereco.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\dto\response\VeiculoEstacionamentoDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\repository\IEnderecoRepository.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\response\EnderecoDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\exception\service\ServiceNotFoundedException.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\controller\PagamentoController.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\controller\UsuarioController.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\dto\response\VeiculoDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\dto\response\EstacionamentoEncerradoDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\response\UsuarioDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\entitie\Pagamento.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\request\UsuarioRequestDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\Tipo.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\controller\EnderecoController.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\service\VeiculoService.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\ApisApplication.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\dto\response\EstacionamentoDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\service\PagamentoService.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\dto\request\EstacionamentoRequestDTO.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\entitie\Usuario.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\repository\IUsuarioRepository.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\config\SpringFoxConfig.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\exception\service\DatabaseException.java
+C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\dto\response\PagamentoDTO.java

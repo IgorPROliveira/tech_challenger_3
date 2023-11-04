@@ -38,10 +38,11 @@ public class EstacionamentoService {
             if (estacionamentoDTO.getTempo() == null || estacionamentoDTO.getTempo().equals(0L)) {
                 throw new Exception("O campo tempo deve ser preenchido na modalidade por tempo FIXO");
             } else {
-                estacionamentoDTO.setTempo(null);
                 estacionamentoDTO.setDatafim(estacionamentoDTO.getDatainico().plusMinutes(estacionamentoDTO.getTempo() * 60));
                 estacionamentoDTO.setValor(7.5 * estacionamentoDTO.getTempo());
             }
+        } else {
+            estacionamentoDTO.setTempo(null);
         }
 
         var estacionamentoEntity = estacionamentoDTO.toEntity();
@@ -58,7 +59,7 @@ public class EstacionamentoService {
                 if (estacionamentoEntity.get().getDatafim().isAfter(dataEncerramento)) {
                     return estacionamentoEntity.get().ToEstacionamentoEncerradoDTO("Aguardando pagamento", "Encerrado dentro do tempo");
                 } else {
-                    long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatafim(), dataEncerramento);
+                    Long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatafim(), dataEncerramento);
                     if (diferenca > 60) {
                         Double horas = diferenca / 60.0d;
                         int valorArredondado = (int) Math.ceil(horas);
@@ -76,7 +77,7 @@ public class EstacionamentoService {
                     }
                 }
             } else {
-                long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatainicio(), dataEncerramento);
+                Long diferenca = ChronoUnit.MINUTES.between(estacionamentoEntity.get().getDatainicio(), dataEncerramento);
                 Double horas = diferenca / 60.0d;
                 if (horas > 15.0d) {
                     int valorArredondado = (int) Math.ceil(horas);

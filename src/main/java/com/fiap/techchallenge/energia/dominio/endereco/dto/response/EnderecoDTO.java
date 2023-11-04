@@ -63,4 +63,6 @@ public class EnderecoDTO {
         this.complemento = endereco.getComplemento();
         this.idusuario = endereco.getIdusuario();
     }
+
+
 }

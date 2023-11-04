@@ -10,9 +10,9 @@ No final quando consolidar as branchs terá que ter isto Ok gerando o obritarior
 
 2.2) Executar mvn package -DskipTests=true
 
-2.3) Se tudo correto com nossa aplicação (podemos ter problema na versão Java, fechamos de usar a 11 por ser a ultima LTS)
+2.3) Se tudo correto com nossa aplicação (podemos ter problema na versão Java, fechamos de usar a 17 por ser a ultima LTS)
 
-2.4) no terminal voltar a pasta raiz do nosso projeto e executar docker build -t tech:2.0 ** irá criar a imagem no docker local
+2.4) no terminal voltar a pasta raiz do nosso projeto e executar docker build -t tech:3.0 ** irá criar a imagem no docker local
 
 2.5) bom com isto teremos criado nossa imagem docker, caso alguém queira se cadastrar e disponibilizar já pelo dockerhub, mas não é necessário
 

@@ -1,4 +1,4 @@
-    FROM openjdk:11
+    FROM openjdk:17
     ADD target/*.jar app.jar
     WORKDIR /appp
     EXPOSE 8080

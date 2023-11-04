@@ -1,41 +1,42 @@
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\repository\IEstacionamentoRepository.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\entitie\Veiculo.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\controller\EstacionamentoController.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\repository\IPagamentoRepository.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\repository\IVeiculoRepository.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\service\UsuarioService.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\response\EnderecoEletrodomesticoDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\Modalidade.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\config\ValidatorBean.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\service\EnderecoService.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\response\UsuarioPessoaDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\controller\VeiculoController.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\entitie\Estacionamento.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\dto\request\VeiculoRequestDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\dto\request\PagamentoRequestDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\service\EstacionamentoService.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\request\EnderecoRequestDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\entitie\Endereco.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\dto\response\VeiculoEstacionamentoDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\repository\IEnderecoRepository.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\dto\response\EnderecoDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\exception\service\ServiceNotFoundedException.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\controller\PagamentoController.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\controller\UsuarioController.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\dto\response\VeiculoDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\dto\response\EstacionamentoEncerradoDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\response\UsuarioDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\entitie\Pagamento.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\dto\request\UsuarioRequestDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\Tipo.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\endereco\controller\EnderecoController.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\veiculo\service\VeiculoService.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\ApisApplication.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\dto\response\EstacionamentoDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\service\PagamentoService.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\estacionamento\dto\request\EstacionamentoRequestDTO.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\entitie\Usuario.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\usuario\repository\IUsuarioRepository.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\config\SpringFoxConfig.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\exception\service\DatabaseException.java
-C:\Users\joeln\Documents\Projeto java 11\tech_challenger_3\src\main\java\com\fiap\techchallenge\energia\dominio\pagamento\dto\response\PagamentoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\entitie\Estacionamento.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\service\PagamentoService.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\controller\VeiculoController.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\repository\IEstacionamentoRepository.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\dto\response\UsuarioInformacaoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\service\EnderecoService.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\dto\request\PagamentoRequestDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\repository\IUsuarioRepository.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\dto\response\VeiculoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\repository\IVeiculoRepository.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\dto\response\UsuarioDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\controller\PagamentoController.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\Tipo.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\exception\service\ServiceNotFoundedException.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\controller\UsuarioController.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\dto\request\VeiculoRequestDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\dto\response\EstacionamentoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\dto\response\EnderecoEletrodomesticoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\dto\response\EstacionamentoAlertaDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\dto\request\EstacionamentoRequestDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\exception\service\DatabaseException.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\controller\EstacionamentoController.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\config\ValidatorBean.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\entitie\Veiculo.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\dto\response\EstacionamentoEncerradoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\service\UsuarioService.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\ApisApplication.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\controller\EnderecoController.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\entitie\Usuario.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\config\SpringFoxConfig.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\dto\request\EnderecoRequestDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\repository\IEnderecoRepository.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\dto\response\EnderecoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\entitie\Pagamento.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\dto\response\PagamentoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\pagamento\repository\IPagamentoRepository.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\usuario\dto\request\UsuarioRequestDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\dto\response\VeiculoEstacionamentoDTO.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\veiculo\service\VeiculoService.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\Modalidade.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\endereco\entitie\Endereco.java
+C:\FIAP_POS\parquimetro_time\tech_challenger_3\src\main\java\com\fiap\techchallenge\parquimetro\dominio\estacionamento\service\EstacionamentoService.java
